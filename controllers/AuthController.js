@@ -26,13 +26,13 @@ user.save()
 }   
 
 //LOGIN 
-const login = async (req,res,next) =>{
+const login =  (req,res,next) =>{
   try {
-    const user = await User.findOne({username: req.body,username })
+    const user =  User.findOne({username:req.body.username})
   if (!user) {
     res.json("Incorrect username");
   }
-  const validPassword = await bcrypt.compare(
+  const validPassword = bcrypt.compare(
     req.body.password,
     user.password
   )
@@ -40,14 +40,16 @@ const login = async (req,res,next) =>{
     res.json("Incorrect password")
   }
   if (user && validPassword) {
-    let token = jwt.sign({username: user.username},process.env.ACCESS_KEY,{ expiresIn: "30s" })
+    let token = jwt.sign({id: user.id},process.env.ACCESS_KEY,{ expiresIn: "30s" })
     res.json({
       message: "Login thanh cong",
       token 
     })
   }
   }catch(error) {
-    res.json(error)
+    res.json({
+      message: "login that bai"
+    })
   }
 }
 
