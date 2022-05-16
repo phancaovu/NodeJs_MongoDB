@@ -1,6 +1,7 @@
 const User   = require('../models/user')
 const bcrypt   = require('bcryptjs')
 const jwt      = require('jsonwebtoken')
+const { use } = require('../router/User')
 
 
 //REGISTER 
@@ -26,9 +27,9 @@ user.save()
 }   
 
 //LOGIN 
-const login =  (req,res,next) =>{
+const login =(req,res) => {
   try {
-    const user =  User.findOne({username:req.body.username})
+    const user = User.findOne({username:req.body.username})
   if (!user) {
     res.json("Incorrect username");
   }
@@ -40,7 +41,7 @@ const login =  (req,res,next) =>{
     res.json("Incorrect password")
   }
   if (user && validPassword) {
-    let token = jwt.sign({id: user.id},process.env.ACCESS_KEY,{ expiresIn: "30s" })
+    let token =  jwt.sign({id: user.id},process.env.ACCESS_KEY,{ expiresIn: "30h" })
     res.json({
       message: "Login thanh cong",
       token 
@@ -50,9 +51,24 @@ const login =  (req,res,next) =>{
     res.json({
       message: "login that bai"
     })
-  }
-}
+  }}
+
 
 module.exports = {
   register,login
 }
+//   bcrypt.compare(req.body.password, 'superSecret', function(err, res) {
+//     if(req.body.password != user.password){
+//       res.json({success: false, message: 'passwords do not match'});
+//     } else {
+//       let token =  jwt.sign({id: user.id},process.env.ACCESS_KEY,{ expiresIn: "30h" })
+//         res.json({
+//           message: "Login thanh cong",
+//           token 
+//         })
+//     }
+//   })
+//  }catch(error) {
+//     res.json({
+//       message: "login that bai"
+//     })}

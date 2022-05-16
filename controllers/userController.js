@@ -1,7 +1,9 @@
-const res = require('express')
+const express = require('express')
 const User = require('../models/user')
-
 // lay danh sach nhan vien
+const layout = (req,res) =>{
+    res.render("layout")
+}
 const index = (req, res, next) =>{
     User.find()
     .then(response => {
@@ -18,7 +20,7 @@ const index = (req, res, next) =>{
 
 
 // show 1 nhan vien
-const show = (req, res, next) =>{
+const show = (req, res) =>{
     User.findById(req.params.id)
     .then(response => {
         res.json({
@@ -88,5 +90,5 @@ const del = (req,res, next) =>{
 
 }
 module.exports ={
-    index,show,del,Update,insert
+    layout,index,show,del,Update,insert
 }
