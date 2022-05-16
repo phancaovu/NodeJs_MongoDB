@@ -75,7 +75,7 @@ const Update = (req,res,next) =>{
 }
 // delete nhan vien
 const del = (req,res, next) =>{
-    //let NhanvienID = req.body.NhanvienID
+    //let  NhanvienID = req.body.NhanvienID
     User.findByIdAndRemove(req.params.id)
     .then(()=>{
         res.json({

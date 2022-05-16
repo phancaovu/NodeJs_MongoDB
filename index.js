@@ -7,8 +7,8 @@ require('dotenv').config()
 const UserRouter   = require('./router/User')
 const app = express()
 app.use(express.static(__dirname + 'public'))
-app.set('views', './views'); // Thư mục views nằm cùng cấp với file app.js
-app.set('view engine', 'ejs'); // Sử dụng pug làm view engine
+app.set('views', './views'); // Thư  mục views nằm cùng cấp với file app.js
+app.set('view engine', 'ejs'); // Sử   dụng pug làm view engine
 
 const server =require("http").Server(app)
 const io     = require("socket.io")(server)

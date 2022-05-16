@@ -36,7 +36,7 @@ const login =(req,res) => {
   const validPassword = bcrypt.compare(
     req.body.password,
     user.password
-  )
+  ) 
   if (!validPassword) {
     res.json("Incorrect password")
   }
@@ -64,7 +64,7 @@ module.exports = {
 //       let token =  jwt.sign({id: user.id},process.env.ACCESS_KEY,{ expiresIn: "30h" })
 //         res.json({
 //           message: "Login thanh cong",
-//           token 
+//             token 
 //         })
 //     }
 //   })
