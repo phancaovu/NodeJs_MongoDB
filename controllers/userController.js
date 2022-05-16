@@ -1,9 +1,11 @@
 const express = require('express')
 const User = require('../models/user')
-// lay danh sach nhan vien
+
+// MAN HINH CHINH
 const layout = (req,res) =>{
     res.render("layout")
 }
+// LIST USER
 const index = (req, res, next) =>{
     User.find()
     .then(response => {
@@ -19,7 +21,7 @@ const index = (req, res, next) =>{
 }
 
 
-// show 1 nhan vien
+// FIND USER
 const show = (req, res) =>{
     User.findById(req.params.id)
     .then(response => {
@@ -34,7 +36,7 @@ const show = (req, res) =>{
     })
 
 }
-// them nhan vien
+// ADD USER
 const insert= (req, res,next) => {
     let user = new User({
         username: req.body.username,
@@ -53,7 +55,7 @@ const insert= (req, res,next) => {
             })
         })
 }
-// Update Nhan vien
+// UPDATE USER
 const Update = (req,res,next) =>{
     let UpdateUser = {
         username: req.body.username,
@@ -73,7 +75,7 @@ const Update = (req,res,next) =>{
         })
     })
 }
-// delete nhan vien
+// DELETE USER
 const del = (req,res, next) =>{
     //let  NhanvienID = req.body.NhanvienID
     User.findByIdAndRemove(req.params.id)
