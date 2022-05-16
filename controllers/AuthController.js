@@ -31,14 +31,14 @@ const login =(req,res) => {
   try {
     const user = User.findOne({username:req.body.username})
   if (!user) {
-    res.json("Incorrect username");
+    res.json("Username khong chinh xac");
   }
   const validPassword = bcrypt.compare(
     req.body.password,
     user.password
   ) 
   if (!validPassword) {
-    res.json("Incorrect password")
+    res.json("Password ko chinh xac")
   }
   if (user && validPassword) {
     let token =  jwt.sign({id: user.id},process.env.ACCESS_KEY,{ expiresIn: "30h" })
@@ -52,7 +52,9 @@ const login =(req,res) => {
       message: "login that bai"
     })
   }}
-
+//  const logout = (req,req) =>{
+   
+//  }
 
 module.exports = {
   register,login
