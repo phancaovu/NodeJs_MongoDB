@@ -4,7 +4,7 @@ const AuthController = require('../controllers/AuthController')
 const userController = require('../controllers/userController')
 
 router.get("/" ,userController.layout)
-router.get("/index",AuthController.login ,userController.index)
+router.get("/index",userController.index)
 router.post("/them", userController.insert)
 router.post("/show", userController.show)
 router.post("/sua", userController.Update)
