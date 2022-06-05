@@ -1,5 +1,9 @@
 # NodeJs_MongoDB
-# phần front end e có làm thử mà lỗi 404 nó ko link qua được file process với layout.css ở  folder public 
+## npm install 
+# build app 
+# cài đặt nodemon 
+### npm install nodemon --save-dev
+## npm start
 
 ![image](https://user-images.githubusercontent.com/66910370/168661453-a89b86f2-5de7-4ff1-9cd9-4c4821207897.png)
 
